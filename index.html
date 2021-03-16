@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/scss/style.css">
+    <title>Der kleine-große Waschbär</title>
+</head>
+<body>
+       <div class="startbildschirm">
+        <div>
+            <img src="assets/img/Racoon_lying.PNG" alt="racoon">
+            <img src="assets/img/fuchs.jpg" alt="fox">
+        </div>
+        <h1>Once upon a time...</h1>
+        <button class="button">Es war einmal...</button>
+        <p>A super cheesy story about a once-in-a-lifetime friendship</p>
+    </div>
+    
+    <div id="container-heart" class="container-heart">
+        <div id="heart">
+            <div>
+                <p>Punkte</p>
+                <p id="points">0</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class=" game_part_one">
+            <h1>Die Abenteuer des kleinen-großen Waschbären</h1>
+            <p>Es war einmal ein <input type="text" placeholder="klein" id="feld|0"> Waschbär, der ganz allein <input type="text" placeholder="über/auf/von/mit" id="feld|1"> Indien <input type="text" placeholder="nach/hin/an/zu" id="feld|2"> Deutschland kam.</p>
+            <p>Das war ein ganz schön <input type="text" placeholder="groß" id="feld|3"> Schritt für so einen <input type="text" placeholder="klein" id="feld|4"> Waschbären und es war klar, dass er in <input type="text" placeholder="diesen/diesem" id="feld|5"> neuen Land <input type="text" placeholder="viel" id="feld|6"> Abenteuer erleben wird.</p>
+
+            <p>Aber bevor wir über seine Abendteuer berichten, möchte ich den kleinen-großen Waschbären erstmal vorstellen: </p>
+            <p>Der <input type="text" placeholder="klein" id="feld|7"> Waschbär futtert für sein Leben gerne und danach macht er am aller liebsten ein <input type="text" placeholder="lang" id="feld|8"> Nickerchen.</p>
+            <img id="sleepy" src="assets/img/Racoon_sleeping.PNG" alt="Schlafender Racoon">
+            <button class="button" id="more">Erzähl mir mehr...</button>
+    </div>
+        
+    <div class="game_part_two">
+        <p>Dann ist noch sehr wichtig zu wissen, dass der Waschbär viele Lieblingsworte hat, die er gerne selber <input type="text" placeholder="sagen" id="feld|9"> oder aber auch <input type="text" placeholder="hören" id="feld|10">.</p>
+        <div id="yummy">
+            <div>
+                <p>Die drei liebsten Worte vom kleinen-großen Waschbären <input type="text" placeholder="sein" id="feld|11">:</p>
+                <ul>
+                    <li>"Together"</li>
+                    <li>"We"</li>
+                    <li>"Us"</li>
+                </ul>
+                <p>Und dann gibt es noch die drei Lieblingsgerichte <input type="text" placeholder="von oder vom" id="feld|12"> Waschbären: </p>
+                <ol>
+                    <li>'Everything' mit Kääääääse</li>
+                    <li>Spaghetti mit Knofi, Chili und Ruccola</li>
+                    <li>Müsli mit Obst, Nüssen und Erdnussmus</li>
+                </ol>
+              
+                <p>Das <input type="text" placeholder="sein" id="feld|13"> erstmal alle wichitigen Infos <input type="text" placeholder="über/auf/von/mit" id="feld|14"> den kleinen-großen Waschbären.</p>
+                <p>Beim nächsten Mal berichten wir über das erste große Abenteuer <input type="text" placeholder="über/auf/vom/mit" id="feld|15"> Waschbären! </p>
+            </div>
+            <img id="happyRacoon" src="assets/img/Racoon_good.PNG" alt="happy raccoon">      
+        </div>
+        <button class="button" id="morePoints">Klicke hier, wenn du Extrapunkte ergattern möchtest</button>
+    </div>
+
+        <div class="extraPoint text-center">
+            <p>Du bekommst Extra-Punkte, wenn du folgende Frage richtig beantwortest:</p>
+            <p>Das Passwort lautet:</p>
+            <input type="text" id="feld|16">
+        </div>
+
+        <div class="kiss">
+            <img id="kiss" src="assets/img/Kiss.jpg" alt="">
+        </div>
+
+         <!-- Modal -->
+    <div
+    class="modal fade"
+    id="modal"
+    tabindex="-1"
+    aria-labelledby="modal"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal">Meldung</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body" style="color: black;">
+            Benutzer hinzugefügt!
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
