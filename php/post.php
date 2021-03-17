@@ -5,19 +5,55 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-$data = json_decode(file_get_contents("php://input")); // wie kann ich heir die id von dem Antwortfeld mit übermitteln?
+$data = json_decode(file_get_contents("php://input")); 
 
-$answer = '';
+$rightanswers = [
+	0 => "kleiner", 
+	1 => "von", 
+	2 => "nach",
+	3 => "großer", 
+	4 => "kleinen", 
+	5 => "diesem", 
+	6 => "viele", 
+	7 => "kleine", 
+	8 => "langes", 
+	9 => "sagt", 
+	10 => "hört", 
+	11 => "sind",
+	12 => "vom", 
+	13 => "sind", 
+	14 => "über", 
+	15 => "vom", 
+	16 => "Kuss"
+];
+
 $indexNumber = '';
-
-if(!empty($data->answer)) {
-	$answer = $data->answer;
-}
-
+$value = '';
 $response = json_encode([
 	'success' => true, 
-	'data' => $answer
+	'data' => $value
 ]);
+
+
+if(!empty($data->value)) {
+	$value = $data->value;
+}
+
+if (!empty($data ->indexNumber)){
+	$indexNumber = $data ->indexNumber;
+};
+
+
+if ($rightanswers.$indexNumber == $value){
+echo json_encode([
+	'success' => true, 
+]);
+} else {
+echo json_encode([
+	'success' => false, 
+]);
+};
+
 
 
 // database connection credentials
@@ -40,13 +76,12 @@ if (!$conn) {
 }
 
 // MySQL INSERT Statement -> https://www.w3schools.com/sql/sql_insert.asp
-$sql = "INSERT INTO antworten_quiz1 (field_id, answer)
-VALUES ('$indexNumber', '$answer')";
+$sql = "INSERT INTO antworten_quiz1 (answer, field_id)
+VALUES ('$value', '$indexNumber')";
 
 if (mysqli_query($conn, $sql)) {
 	$response = json_encode([
 		'success' => true, 
-		'message' => $indexNumber,
 	]);
 } else {
   	$response = json_encode([

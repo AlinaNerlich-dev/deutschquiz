@@ -1,76 +1,4 @@
 
-let data = [
-    {
-        id: "feld|0",
-        answer: "kleiner",
-    },
-    {
-        id: "feld|1",
-        answer: "von",
-    },
-    {
-        id: "feld|2",
-        answer: "nach",
-    },
-    {
-        id: "feld|3",
-        answer: "großer",
-    },
-    {
-        id: "feld|4",
-        answer: "kleinen",
-    },
-    {
-        id: "feld|5",
-        answer: "diesem",
-    },
-    {
-        id: "feld|6",
-        answer: "viele",
-    },
-    {
-        id: "feld|7",
-        answer: "kleine",
-    },
-    {
-        id: "feld|8",
-        answer: "langes",
-    },
-    {
-        id: "feld|9",
-        answer: "sagt",
-    },
-    {
-        id: "feld|10",
-        answer: "hört",
-    },
-    {
-        id: "feld|11",
-        answer: "sind",
-    },
-    {
-        id: "feld|12",
-        answer: "vom",
-    },
-    {
-        id: "feld|13",
-        answer: "sind",
-    },
-    {
-        id: "feld|14",
-        answer: "über",
-    },
-    {
-        id: "feld|15",
-        answer: "vom",
-    },
-    {
-        id: "feld|16",
-        answer: "Kuss",
-    },
-];
-
-
 // Counter
 let counterStart = 0;
 let counter = document.querySelector('#points');
@@ -78,23 +6,38 @@ let indexNUmber;
 let value;
 
 // Game
+// Fetch POST checkAnswer
+
 function checkAnswer(e){
-    let value =  e.target.value;
+    const API_ARRAY_URL = '/php/array.php';
+
     let field_id = e.target.id;
     let split = field_id.split('|');
-    let indexNumber = split[1];  
-    if (indexNumber){
-        compare(indexNumber, e);
-
+    let datacombi = {
+        value: e.target.value,
+        indexNumber: split[1],
     }
-    storeAnswer(value, indexNumber);
-    
-};
+
+    fetch(API_ARRAY_URL, {
+    method: 'POST', 
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({datacombi})
+    })
+    .then(res => res.json())
+    .then(res => {
+        // hier müsste ich jetzt doch if else success true oder false machen!?
+        // compare(indexNumber, value);
+        // storeAnswer(indexNumber, value);
+        console.log (res)
+    });
+}
 
 
-// Fetch POST
+// Fetch POST StoreAnswer
 
-    function storeAnswer(value, indexNumber){
+    function storeAnswer(value){
     const modal = new bootstrap.Modal(document.querySelector('.modal'));
     const API_POST_URL = '/php/post.php';
 
@@ -103,7 +46,7 @@ function checkAnswer(e){
     headers: {
         'Content-Type': 'application/json',
     },
-    body: JSON.stringify({answer:value, id:indexNumber})
+    body: JSON.stringify({answer:value})
     })
     .then(res => res.json())
     .then(res => {

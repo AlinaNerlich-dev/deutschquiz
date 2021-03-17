@@ -1,4 +1,3 @@
-
 // Counter
 let counterStart = 0;
 let counter = document.querySelector('#points');
@@ -6,38 +5,18 @@ let indexNUmber;
 let value;
 
 // Game
-// Fetch POST checkAnswer
-
 function checkAnswer(e){
-    const API_ARRAY_URL = '/php/array.php';
-
+    let value =  e.target.value;
     let field_id = e.target.id;
     let split = field_id.split('|');
-    let datacombi = {
-        value: e.target.value,
-        indexNumber: split[1],
-    }
-
-    fetch(API_ARRAY_URL, {
-    method: 'POST', 
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({datacombi})
-    })
-    .then(res => res.json())
-    .then(res => {
-        // hier müsste ich jetzt doch if else success true oder false machen!?
-        // compare(indexNumber, value);
-        // storeAnswer(indexNumber, value);
-        console.log (res)
-    });
-}
+    let indexNumber = split[1];  
+    storeAnswer(value, indexNumber);
+};
 
 
-// Fetch POST StoreAnswer
+// Fetch POST
 
-    function storeAnswer(value){
+    function storeAnswer(value, indexNumber){
     const modal = new bootstrap.Modal(document.querySelector('.modal'));
     const API_POST_URL = '/php/post.php';
 
@@ -46,11 +25,16 @@ function checkAnswer(e){
     headers: {
         'Content-Type': 'application/json',
     },
-    body: JSON.stringify({answer:value})
+    body: JSON.stringify({value, indexNumber})
     })
     .then(res => res.json())
     .then(res => {
-        console.log (res)
+        if ('success' == true){
+            compare(indexNumber);
+        } else{
+            console.log('Error')
+        }
+        console.log (res),
         modal.show();
     });
 }
@@ -62,12 +46,7 @@ function goodBye(){
     kiss.classList.add('grid');
 }
 
-function compare(indexNumber, e){
-    let correctAnswer = data[indexNumber].answer;
-    let input = e.target.value;
-
-    let inputField = e.target;
-
+function compare(indexNumber){
     if (correctAnswer == input){
         inputField.style.backgroundColor = '#80db90';
         counterStart++;
