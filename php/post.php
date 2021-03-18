@@ -31,7 +31,8 @@ $indexNumber = '';
 $value = '';
 $response = json_encode([
 	'success' => true, 
-	'data' => $value
+	'data' => $value,
+	'data' => $indexNumber
 ]);
 
 
@@ -39,12 +40,12 @@ if(!empty($data->value)) {
 	$value = $data->value;
 }
 
-if (!empty($data ->indexNumber)){
-	$indexNumber = $data ->indexNumber;
+if(!empty($data->indexNumber)){
+	$indexNumber = $data->indexNumber;
 };
 
 
-if ($rightanswers.$indexNumber == $value){
+if ($rightanswers[$indexNumber] == $value){
 echo json_encode([
 	'success' => true, 
 ]);

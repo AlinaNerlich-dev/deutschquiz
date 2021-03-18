@@ -11,6 +11,7 @@ function checkAnswer(e){
     let split = field_id.split('|');
     let indexNumber = split[1];  
     storeAnswer(value, indexNumber);
+    console.log(indexNumber)
 };
 
 
