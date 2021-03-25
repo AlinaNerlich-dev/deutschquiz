@@ -44,19 +44,6 @@ if(!empty($data->indexNumber)){
 	$indexNumber = $data->indexNumber;
 };
 
-
-if ($rightanswers[$indexNumber] == $value){
-echo json_encode([
-	'success' => true, 
-]);
-} else {
-echo json_encode([
-	'success' => false, 
-]);
-};
-
-
-
 // database connection credentials
 $user = 'alinanerlich';
 $password = 'KussRaccoonFox';
@@ -64,7 +51,7 @@ $dbname = 'alinanerlich_db';
 $host = 'localhost';
 
 // Create connection
-$conn = mysqli_connect($host, $user, $password, $dbname); //$port
+$conn = mysqli_connect($host, $user, $password, $dbname); 
 
 // Check connection
 if (!$conn) {
@@ -77,12 +64,13 @@ if (!$conn) {
 }
 
 // MySQL INSERT Statement -> https://www.w3schools.com/sql/sql_insert.asp
-$sql = "INSERT INTO antworten_quiz1 (answer, field_id)
-VALUES ('$value', '$indexNumber')";
+$sql = "INSERT INTO antworten_quiz1 (answer, field_id) VALUES ('$value', '$indexNumber')";
 
 if (mysqli_query($conn, $sql)) {
 	$response = json_encode([
 		'success' => true, 
+		'sql' => $sql,
+		'isCorrect' => ($rightanswers[$indexNumber] == $value)
 	]);
 } else {
   	$response = json_encode([
@@ -93,3 +81,4 @@ if (mysqli_query($conn, $sql)) {
 mysqli_close($conn);
 
 echo $response;
+exit;

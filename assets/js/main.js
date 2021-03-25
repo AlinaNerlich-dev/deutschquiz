@@ -1,7 +1,7 @@
 // Counter
 let counterStart = 0;
 let counter = document.querySelector('#points');
-let indexNUmber;
+let indexNumber;
 let value;
 
 // Game
@@ -30,10 +30,10 @@ function checkAnswer(e){
     })
     .then(res => res.json())
     .then(res => {
-        if ('success' == true){
-            compare(indexNumber);
+        if (res.isCorrect){
+            compareGreen(indexNumber);
         } else{
-            console.log('Error')
+            compareRed(indexNumber)
         }
         console.log (res),
         modal.show();
@@ -47,22 +47,25 @@ function goodBye(){
     kiss.classList.add('grid');
 }
 
-function compare(indexNumber){
-    if (correctAnswer == input){
-        inputField.style.backgroundColor = '#80db90';
-        counterStart++;
+function compareGreen(indexNumber){
+
+    document.activeElement.style.backgroundColor = '#80db90';
+    counterStart++;
+    counter.innerHTML = counterStart;
+    if (indexNumber == 16){
+        counterStart = counterStart + 9;
         counter.innerHTML = counterStart;
-        if (indexNumber == 16){
-            counterStart = counterStart + 9;
-            counter.innerHTML = counterStart;
-            goodBye();
-        }
-    } else {
-        inputField.style.backgroundColor = '#F08080';
-        counterStart--;
-        counter.innerHTML = counterStart;
+        goodBye();
     }
 };
+
+function compareRed(element){
+    document.activeElement.style.backgroundColor = '#F08080';
+    counterStart--;
+    counter.innerHTML = counterStart;
+};
+// document.activeElement nimmt das nächste Element, da man springt
+
 
 document.querySelectorAll('input').forEach((answerField) => {
     answerField.addEventListener('change', checkAnswer);
